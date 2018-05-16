@@ -1,0 +1,33 @@
+﻿<Window x:Class="ScannXboxController.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScannXboxController"
+        mc:Ignorable="d"
+        Title="ScannXBoxController" Height="439.238" Width="660.596">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="145*"/>
+            <ColumnDefinition Width="73*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="button_Start" Content="Start" HorizontalAlignment="Left" Margin="65,346,0,0" VerticalAlignment="Top" Width="88" FontSize="20" Height="28" Click="button_Start_Click"/>
+        <Button x:Name="button_Stop" Content="Stop" HorizontalAlignment="Left" Margin="54.8,346,0,0" VerticalAlignment="Top" Width="97" Height="28" FontSize="20" Grid.Column="1" Click="button_Stop_Click"/>
+        <ListBox x:Name="listBox_Result" HorizontalAlignment="Left" Height="277" Margin="172,39,0,0" VerticalAlignment="Top" Width="298" Grid.ColumnSpan="2"/>
+        <Label x:Name="label" Content="LeftThumb:" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="X:" HorizontalAlignment="Left" Margin="35,86,0,0" VerticalAlignment="Top" RenderTransformOrigin="22.893,0.853"/>
+        <Label x:Name="label2" Content="Y:" HorizontalAlignment="Left" Margin="35,114,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_LeftThumbX" HorizontalAlignment="Left" Height="23" Margin="65,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="textBox_LeftThumbY" HorizontalAlignment="Left" Height="23" Margin="65,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="label3" Content="LeftTriggerValue:" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_LeftTriggerVal" HorizontalAlignment="Left" Height="23" Margin="65,226,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="label_RightThumb" Content="RightThumb:" HorizontalAlignment="Left" Margin="54.8,58,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="label4" Content="X:" Grid.Column="1" HorizontalAlignment="Left" Margin="73.8,86,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_RightThumbX" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="99.8,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="label5" Content="Y:" Grid.Column="1" HorizontalAlignment="Left" Margin="73.8,120,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_RightThumbY" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="99.8,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="label6" Content="RightTriggerValue:" Grid.Column="1" HorizontalAlignment="Left" Margin="54.8,195,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_RightTriggerVal" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="99.8,226,-0.6,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+
+    </Grid>
+</Window>

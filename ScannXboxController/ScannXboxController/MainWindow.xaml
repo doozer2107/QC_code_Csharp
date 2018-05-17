@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScannXboxController"
         mc:Ignorable="d"
-        Title="ScannXBoxController" Height="439.238" Width="660.596">
+        Title="ScannXBoxController" Height="439.238" Width="684.998">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="145*"/>
@@ -28,6 +28,9 @@
         <TextBox x:Name="textBox_RightThumbY" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="99.8,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
         <Label x:Name="label6" Content="RightTriggerValue:" Grid.Column="1" HorizontalAlignment="Left" Margin="54.8,195,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_RightTriggerVal" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="99.8,226,-0.6,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <Button x:Name="button_SetInterval" Content="SetInterval" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" Width="75" Click="button_SetInterval_Click"/>
+        <TextBox x:Name="textBox_Interval" HorizontalAlignment="Left" Height="19" Margin="114,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Text="100"/>
+        <Button x:Name="button_Clear" Content="Clear" HorizontalAlignment="Left" Margin="272,321,0,0" VerticalAlignment="Top" Width="95" Height="24" Click="button_Clear_Click"/>
 
     </Grid>
 </Window>

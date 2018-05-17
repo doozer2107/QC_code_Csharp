@@ -23,6 +23,7 @@ namespace ScannXboxController
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int TimeInterval = 100;
         private Controller XBox;
         private State myState;
         Thread myThread;
@@ -44,13 +45,14 @@ namespace ScannXboxController
         {
             InitializeComponent();
             XBox = new Controller(UserIndex.One);
-            printLeftTriggerValDel += PrintLeftTriggerVal;
-            printLeftThumbXDel += PrintLeftThumbX;
-            printLeftThumbYDel += PrintLeftThumbY;
-            printRightTriggerValDel += PrintRightTriggerVal;
-            printRightThumbXDel += PrintRightThumbX;
-            printRightThumbYDel += PrintRightThumbY;
-            ListBoxAddADel += ListBoxAddA;
+            printLeftTriggerValDel = PrintLeftTriggerVal;
+            printLeftThumbXDel = PrintLeftThumbX;
+            printLeftThumbYDel = PrintLeftThumbY;
+            printRightTriggerValDel = PrintRightTriggerVal;
+            printRightThumbXDel = PrintRightThumbX;
+            printRightThumbYDel = PrintRightThumbY;
+            ListBoxAddADel = ListBoxAdd;
+
         }
 
         private void button_Start_Click(object sender, RoutedEventArgs e)
@@ -62,7 +64,8 @@ namespace ScannXboxController
         {
             while (true)
             {
-                Thread.Sleep(100);//jeder 500ms einen neuen Wert aktualisieren
+                string Time;
+                Thread.Sleep(TimeInterval);//defaut: jeder 100ms einen neuen Wert aktualisieren
                 myState = XBox.GetState();
                 LeftTriggerVal = myState.Gamepad.LeftTrigger.ToString();
                 LeftThumbX = myState.Gamepad.LeftThumbX.ToString();
@@ -76,14 +79,74 @@ namespace ScannXboxController
                 PrintRightTriggerVal(RightTriggerVal);
                 PrintRightThumbX(RightThumbX);
                 PrintRightThumbY(RightThumbY);
-                if (myState.Gamepad.Buttons == GamepadButtonFlags.A)
+                switch (myState.Gamepad.Buttons)
                 {
-                    ListBoxAddA("A");
+                    case GamepadButtonFlags.DPadUp:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: DPadUp", Time));
+                        break;
+                    case GamepadButtonFlags.DPadDown:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: DPadDown", Time));
+                        break;
+                    case GamepadButtonFlags.DPadLeft:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: DPadLeft", Time));
+                        break;
+                    case GamepadButtonFlags.DPadRight:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: DpadRight", Time));
+                        break;
+                    case GamepadButtonFlags.Start:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: Start", Time));
+                        break;
+                    case GamepadButtonFlags.Back:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: Back", Time));
+                        break;
+                    case GamepadButtonFlags.LeftThumb:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: LeftThumb", Time));
+                        break;
+                    case GamepadButtonFlags.RightThumb:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: RightThumb", Time));
+                        break;
+                    case GamepadButtonFlags.LeftShoulder:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: LeftShoulder", Time));
+                        break;
+                    case GamepadButtonFlags.RightShoulder:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: RightShoulder", Time));
+                        break;
+                    case GamepadButtonFlags.A:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: A", Time));
+                        break;
+                    case GamepadButtonFlags.B:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: B", Time));
+                        break;
+                    case GamepadButtonFlags.X:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: X", Time));
+                        break;
+                    case GamepadButtonFlags.Y:
+                        Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
+                        ListBoxAdd(string.Format("{0}: Y", Time));
+                        break;
+                    case GamepadButtonFlags.None:
+                        break;
+                    default:
+                        break;
                 }
             }
         }
+        
 
-        private void ListBoxAddA(string a)
+        private void ListBoxAdd(string a)
         {
             if (!Dispatcher.CheckAccess())
             {
@@ -92,6 +155,7 @@ namespace ScannXboxController
             else
             {
                 listBox_Result.Items.Add(a);
+                listBox_Result.ScrollIntoView(listBox_Result.Items[listBox_Result.Items.Count - 1]);
             }
         }
 
@@ -99,7 +163,7 @@ namespace ScannXboxController
         {
             if (!Dispatcher.CheckAccess())
             {
-                Dispatcher.Invoke(printRightThumbYDel, rightThumbY);
+                Dispatcher.Invoke(printRightThumbYDel,rightThumbY);
             }
             else
             {
@@ -170,6 +234,17 @@ namespace ScannXboxController
         private void button_Stop_Click(object sender, RoutedEventArgs e)
         {
             myThread.Abort();
+            myThread.Join(500);
+        }
+
+        private void button_Clear_Click(object sender, RoutedEventArgs e)
+        {
+            listBox_Result.Items.Clear();
+        }
+
+        private void button_SetInterval_Click(object sender, RoutedEventArgs e)
+        {
+            TimeInterval = int.Parse(textBox_Interval.Text);
         }
     }
 }

@@ -41,6 +41,7 @@ namespace ScannXboxController
         string RightTriggerVal;
         string RightThumbX;
         string RightThumbY;
+        bool ButtonState = false; // false--kein Tasten gedrukt
         public MainWindow()
         {
             InitializeComponent();
@@ -57,6 +58,7 @@ namespace ScannXboxController
 
         private void button_Start_Click(object sender, RoutedEventArgs e)
         {
+            listBox_Result.Items.Add("Display the pressed buttons");
             myThread = new Thread(MyThreadFunction);
             myThread.Start();
         }
@@ -82,34 +84,82 @@ namespace ScannXboxController
                 switch (myState.Gamepad.Buttons)
                 {
                     case GamepadButtonFlags.DPadUp:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "DPadUp" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
                         ListBoxAdd(string.Format("{0}: DPadUp", Time));
                         break;
                     case GamepadButtonFlags.DPadDown:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "DPadDown" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
                         ListBoxAdd(string.Format("{0}: DPadDown", Time));
                         break;
                     case GamepadButtonFlags.DPadLeft:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "DPadLeft" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
                         ListBoxAdd(string.Format("{0}: DPadLeft", Time));
                         break;
                     case GamepadButtonFlags.DPadRight:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "DPadRight" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
-                        ListBoxAdd(string.Format("{0}: DpadRight", Time));
+                        ListBoxAdd(string.Format("{0}: DPadRight", Time));
                         break;
                     case GamepadButtonFlags.Start:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "Start" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
                         ListBoxAdd(string.Format("{0}: Start", Time));
                         break;
                     case GamepadButtonFlags.Back:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "Back" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
                         ListBoxAdd(string.Format("{0}: Back", Time));
                         break;
                     case GamepadButtonFlags.LeftThumb:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "LeftThumb" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
                         ListBoxAdd(string.Format("{0}: LeftThumb", Time));
                         break;
                     case GamepadButtonFlags.RightThumb:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "RightThumb" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
                         ListBoxAdd(string.Format("{0}: RightThumb", Time));
                         break;
@@ -122,22 +172,47 @@ namespace ScannXboxController
                         ListBoxAdd(string.Format("{0}: RightShoulder", Time));
                         break;
                     case GamepadButtonFlags.A:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "A" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
                         ListBoxAdd(string.Format("{0}: A", Time));
                         break;
                     case GamepadButtonFlags.B:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "B" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
                         ListBoxAdd(string.Format("{0}: B", Time));
                         break;
                     case GamepadButtonFlags.X:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "X" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
                         ListBoxAdd(string.Format("{0}: X", Time));
                         break;
                     case GamepadButtonFlags.Y:
+                        if (listBox_Result.Items[listBox_Result.Items.Count - 1].ToString().Substring(25) == "Y" &&
+                            ButtonState != false)
+                        {
+                            break;
+                        }
+                        ButtonState = true;
                         Time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss fff");
                         ListBoxAdd(string.Format("{0}: Y", Time));
                         break;
                     case GamepadButtonFlags.None:
+                        ButtonState = false;
                         break;
                     default:
                         break;
@@ -240,6 +315,7 @@ namespace ScannXboxController
         private void button_Clear_Click(object sender, RoutedEventArgs e)
         {
             listBox_Result.Items.Clear();
+            listBox_Result.Items.Add("Display the pressed buttons");
         }
 
         private void button_SetInterval_Click(object sender, RoutedEventArgs e)
